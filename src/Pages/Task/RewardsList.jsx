@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Reward from '../Task/Reward.jsx';
+import './RewardsList.scss'
 
 class RewardsList extends Component {
 
@@ -13,10 +14,14 @@ class RewardsList extends Component {
         }
 
         return (
-            <div>
-                { allRewards.map(reward => {
-                return <Reward reward={reward} key={reward.id}/>
-            })  
+            <div className= "RewardsList">
+                { 
+                    allRewards.filter(reward => {
+                        return reward.campaign_id === '001'
+                    })
+                    .map(reward => {
+                        return <Reward reward={reward} key={reward.id}/>
+                    })
                 }
             </div>
             
