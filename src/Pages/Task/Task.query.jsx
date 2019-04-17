@@ -8,7 +8,10 @@ export default graphql(
         name,
         campaign_id,
         description,
-        image
+        image,
+        quantity,
+        capPerAmbassador, 
+        points
       }}
     `,
     {
