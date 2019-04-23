@@ -2,3 +2,12 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+
+.filterBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 3vw;
+}

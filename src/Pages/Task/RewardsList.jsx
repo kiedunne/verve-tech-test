@@ -56,24 +56,23 @@ class RewardsList extends Component {
       return reward.quantity
     })
     let uniq = [...new Set(rewardQuantities)]
-    return uniq
+    return uniq.sort(function (a, b) {
+      return a - b
+    })
   }
-
   pointsOptions(rewards) {
     let rewardPoints = rewards.map(reward => {
       return reward.points
     })
     let uniq = [...new Set(rewardPoints)]
-    return uniq
+    return uniq.sort()
   }
-
   ambassadorOptions(rewards) {
     let rewardAmbasadors = rewards.map(reward => {
       return reward.capPerAmbassador
     })
     let uniq = [...new Set(rewardAmbasadors)]
-    return uniq
-
+    return uniq.sort()
   }
 
 
@@ -87,8 +86,10 @@ class RewardsList extends Component {
 
     return (
       <div>
+      <div className="filterBar">
         <label>Quantity</label>
         <select name="quantity" onChange={this.handleFilterChange}>
+          <option value="">all</option>
           {this.quantitiesOptions(rewards).map(quantity => {
             return <option value={quantity}>{quantity} </option>
           })
@@ -112,7 +113,7 @@ class RewardsList extends Component {
           })
           }
         </select>
-
+        </div>
         <div className="RewardsList">
           {filteredRewards
             .filter(reward => {
