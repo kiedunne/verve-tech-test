@@ -24,7 +24,7 @@ The only tests present for a number of components, incuding Routes, are snapshot
 **Line 10 - 28:**
 
 
-Similar to Routes, the Review component only has snapshot tests, which only test the jsx the component renders rather than the behavior of the component. There was a unique key warning for Review, but adding a unique key prop broke the Reveiew tests because they no longer matched the snapshot provided, which makes the devloper have to change the test as well. Tests should be robust enough not to break when such a small change is implemented that does not radically impact the behavior of the component. Consider what *you need the Reveiew component to consistently do* when writing your tests. In this case, it looks like you need it to return ........*COME BACK*
+Similar to Routes, the Review component only has snapshot tests, which only test the jsx the component renders rather than the behavior of the component. There was a unique key warning for Review, but adding a unique key prop broke the Review tests because they no longer matched the snapshot provided, which makes the developer have to change the test as well. Tests should be robust enough not to break when such a small change is implemented that does not radically impact the behavior of the component. Consider what *you need the Review component to consistently do* when writing your tests. In this case, it looks like you need it to return ........*COME BACK*
 
 ## Review.jsx
 **Line 10 - 28:**
@@ -55,7 +55,7 @@ There doesn't seem to be much benefit of destructuring id, title and price out o
 **Line 21:**
 
 
-Consider using the global state to determine wheather or not a ticket is active, rather than using the local state of TicketCard. Currently, if a user adds a ticket to their basket then removes that ticket, it remains highlighted. To ensure the user gets clear visual feedback of that ticket not being in their basket, you could find the selected card in the global state by passing in TicketCard's ownProps to connect(), then setting the element class based on the value of quantity - active when the value is above 0. 
+Consider using the global state to determine whether or not a ticket is active, rather than using the local state of TicketCard. Currently, if a user adds a ticket to their basket then removes that ticket, it remains highlighted. To ensure the user gets clear visual feedback of that ticket not being in their basket, you could find the selected card in the global state by passing in TicketCard's ownProps to connect(), then setting the element class based on the value of quantity - active when the value is above 0. 
 
 
 `export default connect((state, ownProps) => ({
@@ -67,7 +67,7 @@ Consider using the global state to determine wheather or not a ticket is active,
 ## /actions/index.jsx
 **Line 2:**
 
-Consider renaming 'action' to something like product or item to increase readibility for the next developer. The parameter you are passing is not an action, these funtions are the acctions that are acting on the item you pass it.
+Consider renaming 'action' to something like 'product' or 'item' to increase readability for the next developer. The parameter you are passing is not an action, these functions are the actions that are acting on the item you pass it.
 
 ## /reducers/index.jsx
 **Line 4:**
@@ -92,25 +92,71 @@ When items are removed from the basket, the quantity prop is subtracted by 1. Wh
 
 
 
-
-
-
 ## TicketCard.spec.jsx
 **Line 27**
+
+
 Great testing of the behavior of TicketCard by ensuring this component calls dispatch with the correct props and type to trigger the associated action.
 
 
 **Line 37**
+
+
 If you use the global state to find the TicketCard that I suggested about, this test needs to change to store to find the right ticket and check the quantity property rather than just using the local state of TicketCard.
 
 
 ## TicketList.jsx
 **Line 11**
+
+
 This h1 element doesn't need a key, it's not being iterated over.
 
 **Line 16**
-Consider using the product.id for each TicketCard element. Keys should be unique values as it ensures that the items in the array are dsiplayed in the correct order. An item's index will change if new items are added or added to the array, or sorted. 
+
+
+Consider using the product.id for each TicketCard element. Keys should be unique values as it ensures that the items in the array are displayed in the correct order. An item's index will change if new items are added or added to the array, or sorted. 
 
 
 ## TicketList.spec.jsx
-Not sure, but maybe something like there should be a test looking if theres ....that the correct number of products were rendered on the list- rather than just a snapshot
+Not sure, but maybe something like there should be a test looking if theres ....that the correct number of products were rendered on the list- rather than just a snapshot. COME BACK
+
+
+
+## BasketCard.jsx
+**Line 7-10**
+
+
+You can DRY up this code by replacing with ` return price * quantity`. There's no need to store cost in a variable as this method just needs to return the right value. You could even place this simple logic online 21 in the render function and remove the get CardCost function: `<p>Cost: £{price * quantity}</p>`, however it's good practice to keep things simple in the render function.
+
+
+## BasketCard.spec.jsx
+**Line 5-21**
+
+
+This test is really only testing if a BasketCard component with one item (id 2) renders. Each BasketCard component has a title and a calculated cost from the quantity and price, though none of this is tested. Consider adding some more detail tests that check the cost is calculated correctly.
+
+
+## Basket.jsx
+**Line 12**
+
+
+Consider renaming the component to 'Basket' rather than having 'component' at the end of it to keep consistent with the filename and other components. 
+
+
+**Line 24**
+
+
+Again, consider not using a string with the element's index for the BasketCard components key value. See comments on line 117. 
+
+
+## Basket.spec.jsx
+**Line 5**
+
+Consider extending these tests to check if the Basket can display multiple BasketCards or nothing if nothing is in the basket. This is closer to the function of the Basket component rather than matching a snapshot. 
+
+
+## Total.jsx
+**Line 15**
+
+
+Consider renaming the component to Total to be more consistent with the filename.
