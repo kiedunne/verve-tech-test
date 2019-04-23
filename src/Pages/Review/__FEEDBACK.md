@@ -17,7 +17,7 @@ There is a some inconsistent use of double and single quotes throughout the code
 **Line 12:**
 
 
-The only tests present for a number of components, incuding Routes, are snapshots. These only test the jsx rendered by the component, not the actual behavior of the component. If another developer starts working on the codebase and makes even a small change, like adding a key to a component, these snapshots will break. As Enzyme is installed in this project, consider using MemoryRouter, which can keep different URLs to test in memory, to mock your react-router. Right now there is no test in place to ensure a user will be brought to the correct page depending on the URL.
+The only tests present for a number of components, including Routes, are snapshots. These only test the jsx rendered by the component, not the actual behavior of the component. If another developer starts working on the codebase and makes even a small change, like adding a key to a component, these snapshots will break. As Enzyme is installed in this project, consider using MemoryRouter, which can keep different URLs to test in memory, to mock your react-router. Right now there is no test in place to ensure a user will be brought to the correct page depending on the URL.
 
 
 ## Review.spec.jsx.
