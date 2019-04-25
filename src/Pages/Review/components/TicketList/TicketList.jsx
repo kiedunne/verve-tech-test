@@ -4,7 +4,7 @@ import TicketCard from '../TicketCard/TicketCard.jsx';
 import './TicketList.scss';
 
 class TicketList extends Component {
-    render () {
+    render() {
         const { products, title } = this.props;
         return (
             <div className="ticket-list">
@@ -12,13 +12,13 @@ class TicketList extends Component {
                     Tickets for {title}
                 </h1>
                 <div key="list">
-                    { products.map((product, index) => (
+                    {products.map((product, index) => (
                         <div key={`listing-${index}`}>
                             <TicketCard
                                 product={product}
                             />
                         </div>
-                    )) }
+                    ))}
                 </div>
             </div>
         );

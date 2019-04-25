@@ -4,9 +4,7 @@ exports[`<TicketList /> renders 1`] = `
 <div
   className="ticket-list"
 >
-  <h1
-    key="title"
-  >
+  <h1>
     Tickets for 
     test title
   </h1>

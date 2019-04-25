@@ -8,7 +8,7 @@
   },
   "scripts": {
     "serve": "npm start & webpack --watch --progress",
-    "unit": "jest --watchAll"
+    "unit": "jest --watch"
   },
   "author": "Dan Pavitt",
   "license": "ISC",
