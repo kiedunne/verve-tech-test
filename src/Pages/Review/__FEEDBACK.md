@@ -4,7 +4,7 @@
 **Line 11:**
 
 
-The script to run tests fails when run with npm. Please change the command to `"jest --watchAll"` to run the test properly.
+The script to run tests fails when run with npm. After I hanged the command to `"jest --watchAll"`, the tests ran. Consider changing the script
 
 
 ## Routes.jsx
@@ -24,7 +24,7 @@ The only tests present for a number of components, including Routes, are snapsho
 **Line 10 - 28:**
 
 
-Similar to Routes, the Review component only has snapshot tests, which only test the jsx the component renders rather than the behavior of the component. There was a unique key warning for Review, but adding a unique key prop broke the Review tests because they no longer matched the snapshot provided, which makes the developer have to change the test as well. Tests should be robust enough not to break when such a small change is implemented that does not radically impact the behavior of the component. Consider what *you need the Review component to consistently do* when writing your tests. In this case, it looks like you need it to return ........*COME BACK*
+Similar to Routes, the Review component only has snapshot tests, which only test the jsx the component renders rather than the behavior of the component. There was a unique key warning for Review, but adding a unique key prop broke the Review tests because they no longer matched the snapshot provided, which makes the developer have to change the test as well. Tests should be robust enough not to break when such a small change is implemented that does not radically impact the behavior of the component. Consider what *you need the Review component to consistently do* when writing your tests.
 
 ## Review.jsx
 **Line 10 - 28:**
@@ -42,10 +42,7 @@ There is no need to set the key of the Ticket List component. A component only n
 
 
 Some components are appended with 'Component' at the end of their names, and others aren't- please be consistent with naming, ie. stick to TicketCard and TicketList rather than TicketCardComponent and TicketList.
-**Line 8:**
 
-
-Don't need state...not sure why *COME BACK*
 
 **Line 21:**
 

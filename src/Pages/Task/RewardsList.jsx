@@ -11,7 +11,6 @@ class RewardsList extends Component {
   };
 
   componentDidMount() {
-
     let filters = {
       quantity: { value: "", options: [] },
       points: { value: "", options: [] },
@@ -20,34 +19,12 @@ class RewardsList extends Component {
     this.setState({
       filters
     })
-
   }
-  quantitiesOptions(rewards) {
-    let rewardQuantities = rewards.map(reward => {
-      return reward.quantity
-    })
-    let uniq = [...new Set(rewardQuantities)]
-    this.state.filters.quantity.options = uniq
-    return uniq
+  getUniqueOptions(options) {
+    const unique = [...new Set(options)]
+    return unique
   }
 
-  pointsOptions(rewards) {
-    let rewardPoints = rewards.map(reward => {
-      return reward.points
-    })
-    let uniq = [...new Set(rewardPoints)]
-    this.state.filters.points.options = uniq
-    return uniq.sort()
-  }
-
-  ambassadorOptions(rewards) {
-    let rewardAmbassadors = rewards.map(reward => {
-      return reward.capPerAmbassador
-    })
-    let uniq = [...new Set(rewardAmbassadors)]
-    this.state.filters.capPerAmbassador.options = uniq
-    return uniq.sort()
-  }
   componentDidUpdate(prevProps) {
     if (prevProps.allRewards !== this.props.allRewards) {
       this.setState({
@@ -71,7 +48,6 @@ class RewardsList extends Component {
     const filteredRewards = this.state.rewards.filter(reward => {
       return reward[filter.type] == filter.value;
     });
-
     this.setState({
       filteredRewards
     });
@@ -87,9 +63,17 @@ class RewardsList extends Component {
     this.filterRewards(filter);
   };
 
-
   render() {
     const { loading, filteredRewards, rewards } = this.state;
+    const quantities = rewards.map(reward => {
+      return reward.quantity
+    })
+    const points = rewards.map(reward => {
+      return reward.points
+    })
+    const capPerAmbassador = rewards.map(reward => {
+      return reward.capPerAmbassador
+    })
 
     if (loading) {
       return <h1>Loading Rewards!</h1>;
@@ -101,7 +85,7 @@ class RewardsList extends Component {
           <label>Quantity</label>
           <select name="quantity" onChange={this.handleFilterChange}>
             <option value="">all</option>
-            {this.quantitiesOptions(rewards).map(quantity => {
+            {this.getUniqueOptions(quantities).map(quantity => {
               return <option value={quantity}>{quantity} </option>
             })
             }
@@ -110,7 +94,7 @@ class RewardsList extends Component {
           <label>Points</label>
           <select name="points" onChange={this.handleFilterChange}>
             <option value="">all</option>
-            {this.pointsOptions(rewards).map(points => {
+            {this.getUniqueOptions(points).map(points => {
               return <option value={points}>{points} </option>
             })
             }
@@ -119,7 +103,7 @@ class RewardsList extends Component {
           <label>Cap per ambassador</label>
           <select name="capPerAmbassador" onChange={this.handleFilterChange}>
             <option value="">all</option>
-            {this.ambassadorOptions(rewards).map(cap => {
+            {this.getUniqueOptions(capPerAmbassador).map(cap => {
               return <option value={cap}>{cap} </option>
             })
             }
